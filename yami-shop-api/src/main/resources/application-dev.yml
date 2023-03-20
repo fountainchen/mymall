@@ -9,8 +9,8 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 0
-      maximum-pool-size: 20
-      idle-timeout: 10000
+      maximum-pool-size: 8
+      idle-timeout: 15000
       connection-test-query: select 1
   redis:
     host: 120.46.174.150
