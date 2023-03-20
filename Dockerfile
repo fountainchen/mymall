@@ -34,6 +34,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositorie
 
 # 使用 HTTPS 协议访问容器云调用证书安装
 RUN apk add ca-certificates
+RUN apk --no-cache add ttf-dejavu fontconfig
+#fc-cache --force
 
 # 指定运行时的工作目录
 WORKDIR /app
