@@ -6,7 +6,12 @@ FROM maven:3.6.0-jdk-8-slim as build
 WORKDIR /app
 
 # 将src目录下所有文件，拷贝到工作目录中src目录下（.gitignore/.dockerignore中文件除外）
-COPY * /app/
+COPY yami-shop-api /app/yami-shop-api
+COPY yami-shop-bean /app/yami-shop-bean
+COPY yami-shop-common /app/yami-shop-common
+COPY yami-shop-security /app/yami-shop-security
+COPY yami-shop-service /app/yami-shop-service
+
 
 # 将pom.xml文件，拷贝到工作目录下
 COPY settings.xml pom.xml /app/
@@ -34,7 +39,7 @@ RUN apk add ca-certificates
 WORKDIR /app
 
 # 将构建产物jar包拷贝到运行时目录中
-COPY --from=build /app/target/*.jar .
+COPY --from=build /app/yami-shop-api/target/*.jar .
 
 # 暴露端口
 # 此处端口必须与「服务设置」-「流水线」以及「手动上传代码包」部署时填写的端口一致，否则会部署失败。
